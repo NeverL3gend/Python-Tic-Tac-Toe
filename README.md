@@ -26,3 +26,4 @@ Tic Tac Toe a familar game that everyone knows.
 
 # 07/21/22
 Today I currently worked on the Heads and tails logic, which it is working but currently there are some things that still need to added before that part is considered complete.
+/Users/alejandro.garcia/Desktop/Python-Tic-Tac-Toe/images/Screen Shot 2022-07-21 at 1.15.23 PM.png
