@@ -25,17 +25,38 @@
 #  Diagonal: [0,4,8] , [2,4,6]
 #  Vertical: [0,3,6] , [1,4,7] , [2,5,8]
 # ####
-import random
 
-#Greating the players
-print ("Welcome to Tic Tac Toe!")
 
-#heads or tail logic
-coinflip = ['heads', 'tails']
-question = input("Choose Heads or Tails to see who goes first! -> ")
-result = random.choice(coinflip)
-print (result)
+# import random
 
-#coin Flip winner:
+# #Greating the players
+# print ("Welcome to Tic Tac Toe!")
 
-#player chooses if they want to be X or O
+# #heads or tail logic
+# coinflip = ['heads', 'tails']
+# question = input("Choose Heads or Tails to see who goes first! -> ")
+# result = random.choice(coinflip)
+# print (result)
+
+
+# Printing the board
+
+board = [['-','-','-'],['-','-','-'],['-','-','-']]
+#create a function that is going to allow us to display our board
+def display_board (board):
+    #going to use a for loop to help display our board
+    #using Rows and slots
+    for rows in board:
+        #this displays the rows [Row0['-','-','-'],Row1['-','-','-'],Row2['-','-','-']]
+        #need a nested for loop that is going to allow us to access the slots
+        for slots in rows:
+            #end= basically gives us a new line
+            print(slots, end='')
+        print()
+print(display_board(board))
+
+#Playing the Game
+
+# Create a function that is going to help us take turns on playing
+# if player one starts then switches
+
