@@ -44,19 +44,19 @@
 board = [['-','-','-'],['-','-','-'],['-','-','-']]
 #create a function that is going to allow us to display our board
 def display_board (board):
-    #going to use a for loop to help display our board
-    #using Rows and slots
-    for rows in board:
-        #this displays the rows [Row0['-','-','-'],Row1['-','-','-'],Row2['-','-','-']]
-        #need a nested for loop that is going to allow us to access the slots
-        for slots in rows:
-            #end= basically gives us a new line
-            print(slots, end='')
-        print()
-print(display_board(board))
+    for row in board:
+        print("|".join(row))      
+display_board(board)
 
 #Playing the Game
 
 # Create a function that is going to help us take turns on playing
 # if player one starts then switches
 
+#we need to remember the existing steps
+x_input = []
+o_input = []
+
+def play_game ():
+    x = input()
+    o = input()
