@@ -1,61 +1,96 @@
 #### 
 # This is going to be the start of my first project
-# 
-# Plan:
-# 
-# Greet the players that are playing. 
-#
-# I want to have a Heads or Tales logic to determine who goes first 
-#
-# I want the following table to look like this:
-# 
-# _|_|_
-# _|_|_
-#  | |
-# 
-# How I think this should work is that each spot are going to be put in a list
-# first row = [0,1,2]
-# Second row =[3,4,5]
-# Third row = [6,7,8]
-# 
-# From there we will have a logic that will determine the winner
-# 
-# Winning logic 
-#  Straight across: [0,1,2] , [3,4,5] , [6,7,8]
-#  Diagonal: [0,4,8] , [2,4,6]
-#  Vertical: [0,3,6] , [1,4,7] , [2,5,8]
-# ####
 
 
-# import random
+board = ["-","-","-",
+        "-","-","-",
+        "-","-","-"
+        ]
 
-# #Greating the players
-# print ("Welcome to Tic Tac Toe!")
-
-# #heads or tail logic
-# coinflip = ['heads', 'tails']
-# question = input("Choose Heads or Tails to see who goes first! -> ")
-# result = random.choice(coinflip)
-# print (result)
+current_Player = "x"
+winner = None
+gameRunning = True
 
 
-# Printing the board
+#printing a game board
+def printBoard(board):
+    print (board[0] + "|" + board[1] + "|" + board[2])
+    print("-----")
+    print (board[3] + "|" + board[4] + "|" + board[5])
+    print("-----")
+    print (board[6] + "|" + board[7] + "|" + board[8])
 
-board = [['-','-','-'],['-','-','-'],['-','-','-']]
-#create a function that is going to allow us to display our board
-def display_board (board):
-    for row in board:
-        print("|".join(row))      
-display_board(board)
 
-#Playing the Game
+#take player input
+def player_Input(board):
+    inp = int(input("Enter a number 1 through 9: "))
+        #first we're confirming if the number is valid from 1 through 9
+        # Then we also confirm if the spot is taken or not
+    if inp >= 1 and inp <= 9 and board[inp-1] == "-":
+        #from here we're setting the current position
+        board[inp-1] = current_Player
+    else:
+        print ("spot has been played!")
 
-# Create a function that is going to help us take turns on playing
-# if player one starts then switches
+#check for win or tie
+def check_Horizontal(board):
+    global winner
+    if board[0] == board[1] == board[2] and board[1] != "-":
+        winner = board[0]
+        return True
+    elif board[3] == board[4] == board[5] and board[3] != "-":
+        winner = board[3]
+        return True
+    elif board[6] == board[7] == board[7] and board[6] != "-":
+        winner = board[6]
+        return True
 
-#we need to remember the existing step
+def check_Vertical (board):
+    global winner
+    if board[0] == board[3] == board[6] and board[0] != "-":
+        winner = board[0]
+        return True
+    elif board[1] == board[4] == board[5] and board[7] != "-":
+        winner = board[1]
+        return True
+    elif board[2] == board[5] == board[8] and board[2] != "-":
+        winner = board[2]
+        return True
 
-def play_game (board):
-    player_input = int(input("Enter a number 1 through 9: "))
-    if player_input >= 1 and player_input <= 9 and board[player_input-1] == board:
-        board[player_input-1] = board
+def check_Diagonal (board):
+    if board[0] == board[4] == board[8] and board[0] != "-":
+        winner = board[0]
+        return True
+    elif board[2] == board[4] == board[6] and board[2] != "-":
+        winner = board[3]
+        return True
+
+def tie (board):
+    global gameRunning
+    if "-" not in board:
+        printBoard(board)
+        print("It's a tie!")
+        gameRunning = False
+
+def check_winner():
+    global gameRunning
+    if check_Diagonal(board) or check_Horizontal(board) or check_Vertical(board):
+        print(f"The winner {winner}")
+        gameRunning = False
+#switch the player
+def switch_player ():
+    global current_Player
+    if current_Player == "x":
+        current_Player = "O"
+    else:
+        current_Player = "x"
+
+
+
+#check for win or tie again
+while gameRunning:
+    printBoard(board)
+    player_Input(board)
+    check_winner()
+    tie(board)
+    switch_player()
