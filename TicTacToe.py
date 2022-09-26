@@ -53,10 +53,9 @@ display_board(board)
 # Create a function that is going to help us take turns on playing
 # if player one starts then switches
 
-#we need to remember the existing steps
-x_input = []
-o_input = []
+#we need to remember the existing step
 
-def play_game ():
-    x = input()
-    o = input()
+def play_game (board):
+    player_input = int(input("Enter a number 1 through 9: "))
+    if player_input >= 1 and player_input <= 9 and board[player_input-1] == board:
+        board[player_input-1] = board
